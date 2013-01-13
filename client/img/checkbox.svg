@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   inkscape:export-filename="/data/masurel/projects/chicksexer/client/img/checkbox.png"
+   inkscape:export-xdpi="60.518917"
+   inkscape:export-ydpi="60.518917"
+   sodipodi:docname="New document 1">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.1484375"
+     inkscape:cx="283.58996"
+     inkscape:cy="589.65986"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="1021"
+     inkscape:window-x="1680"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#5bcc00;stroke-width:34.40000153;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path2985"
+       sodipodi:cx="257.30612"
+       sodipodi:cy="333.55945"
+       sodipodi:rx="131.04762"
+       sodipodi:ry="131.04762"
+       d="m 388.35374,333.55945 a 131.04762,131.04762 0 1 1 -262.09524,0 131.04762,131.04762 0 1 1 262.09524,0 z"
+       transform="translate(2,0.435386)"
+       inkscape:export-filename="/data/masurel/projects/chicksexer/client/img/checkbox.png"
+       inkscape:export-xdpi="60.049999"
+       inkscape:export-ydpi="60.049999" />
+    <g
+       id="g3762"
+       transform="matrix(0.92493973,0,0,0.92493973,62.563019,20.640099)"
+       style="stroke-width:37.19161247000000259;stroke-miterlimit:4;stroke-dasharray:none;stroke:#e50d00;stroke-opacity:1"
+       inkscape:export-filename="/data/masurel/projects/chicksexer/client/img/checkbox.png"
+       inkscape:export-xdpi="60.049999"
+       inkscape:export-ydpi="60.049999">
+      <g
+         style="stroke:#e50d00;stroke-width:37.19161247000000259;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="g3759">
+        <path
+           style="color:#000000;fill:none;stroke:#e50d00;stroke-width:37.19161247000000259;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           d="M 395.31973,199.8996 677.0068,481.58667"
+           id="path2987"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path2989"
+         d="M 393.57823,482.89279 676.14745,199.38216"
+         style="color:#000000;fill:none;stroke:#e50d00;stroke-width:37.19161224;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>

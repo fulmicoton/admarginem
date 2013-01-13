@@ -1,0 +1,64 @@
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #f4f4f4;
+	padding: 20px;
+	min-height: 100%;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+div.panel {
+	min-height:700px !important;
+	width: 49%;	
+	padding: 10px;
+	background-color: white;
+	border: solid 1px #444;
+}
+
+div.view-panel {
+	float: left;
+}
+
+div.answer-panel {
+	
+	float: right;
+	label {
+		float: left;
+		margin-right: 10px;
+	}
+
+	input[type="checkbox"] {
+		display: block;
+		margin: 200px auto;
+		width: 200px;
+		height: 200px;
+	}
+
+	input[type="checkbox"]:after {
+		content:"";
+		background-color: red;
+	    display:inline-block;
+		width: 200px;
+		height: 200px;
+	    margin: 0 auto;
+	    vertical-align:middle;
+	    background:url(../img/checkbox.png) -199px top no-repeat;
+	    cursor:pointer;
+	}
+
+	input[type="checkbox"]:checked:after {
+		content:"";
+		margin: 0 auto;
+	    background:url(../img/checkbox.png) left top no-repeat;
+	}
+
+}
