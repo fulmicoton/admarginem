@@ -1,17 +1,19 @@
 potato = require "potato"
 
 # Models
-AnnotationModel =  potato.Boolean
+AnnotationModel =  potato.Enum 
+    default: "correct"
+    choices: [ {id: "correct", name: "correct"}, {id: "wrong", name: "wrong"}  ]
 
 InputModel = potato.Model
     components:
-        url: potato.String
+        url: potato.String 
         data: potato.String # just a JSON String
 
 # Input view
 InputView = potato.View
     el: '<div class="view-panel panel">'
-    template: "
+    template: " 
         <h1>URL</h1>{{ url }}
         <h1>DATA</h1>{{ data }}
     "
@@ -27,11 +29,37 @@ AnnotateView = potato.FormFactory.FormOf(AnnotationModel)
                 jwerty.key 'y', => @val true
                 @keyboardIsBound = true
 
+
+# Slider View
+SliderView = potato.View
+    el: '<input class="page-range" type="range">'
+    
+    delegates:
+        val: "el"
+
+    methods:
+        setRange: (min, max)->
+            @el.prop "min", min
+            @el.prop "max", max
+
+        context: (parent)->
+            {val: parent.indexOffSet1()}
+
+    events:
+        "": render : (context)->
+            @val context.val
+        "@el": change: ->
+            @trigger "change"
+
 # Application
 AdMarginemApp = potato.View
     
     template: """
-        {{ indexOffSet1 }} / {{ size }}
+        <div class="header">
+            <h1>admarginem</h1>
+            <span class="number">{{ indexOffSet1 }} / {{ size }} </span>
+            <#slider/>
+        </div>
         <#inputView/>
         <#annotateView/>
     """
@@ -43,6 +71,7 @@ AdMarginemApp = potato.View
         hasUnsavedChanges: potato.Boolean
     
     components:
+        slider: SliderView
         inputView: InputView
             methods:
                 context: (parent)->
@@ -52,12 +81,14 @@ AdMarginemApp = potato.View
                 context: (parent)->
                     parent.currentAnnotation()
 
+
     methods:
         load: (data)->
             @population.setData data
             for i in [0...@size()]
                 @annotations.add AnnotationModel.make()
             @sampleId = 0
+            @slider.setRange 1, @size()
             @render()  
 
         saveCurrent: ->
@@ -97,6 +128,9 @@ AdMarginemApp = potato.View
     events:
         "@annotateView": "change": ->
             @hasUnsavedChanges = true
+        "@slider": change: ->
+            page = @slider.val() - 1
+            @goTo page
 
 $ ->
     admarginem = AdMarginemApp.loadInto $ "#content"

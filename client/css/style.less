@@ -1,11 +1,13 @@
 html {
 	height: 100%;
+	padding: 20px;
 }
 
 body {
-	background-color: #f4f4f4;
-	padding: 20px;
+	position: relative;
+	background-color: #fafafa;
 	min-height: 100%;
+	font-family: sans-serif;
 }
 
 * {
@@ -16,31 +18,104 @@ body {
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-div.panel {
-	min-height:700px !important;
-	width: 49%;	
-	padding: 10px;
-	background-color: white;
-	border: solid 1px #444;
+
+
+div.header {
+
+	h1 {
+		float: left;
+	}
+
+	span.number {
+		float:right;
+	}
+
+	input.page-range {
+		@inputcolor: #444;
+		@rangesize: 20px;
+		clear: both;
+		width: 100%;
+		-webkit-appearance:none; -moz-apperance:none; width:100%; height:4px;
+		margin-bottom: @rangesize;
+		background: @inputcolor;
+		-webkit-border-radius:2px;
+		-moz-border-radius:2px;
+		-ms-border-radius:2px;
+		-o-border-radius:2px;
+		&::-webkit-slider-thumb{
+			-webkit-appearance:none;
+			-moz-apperance:none;
+			width:  @rangesize;
+			height: @rangesize;
+			-webkit-border-radius:10px;
+			-moz-border-radius:10px;
+			-ms-border-radius:10px;
+			-o-border-radius:10px;
+			border-radius:10px;
+			background-color: @inputcolor;
+		}
+	}
+
+	input.page-range:after { 
+	  content: "";
+	  position: absolute;
+	  width: 0;
+	  height: 0;
+	  border-top: 10px solid #999999;
+	  border-left: 5px solid transparent;
+	  border-right: 5px solid transparent;
+	  top: 100%;
+	  left: 50%;
+	  margin-left: -5px;
+	  margin-top: -1px;
+	}
 }
 
+div.panel {
+	position: absolute;
+	min-height:700px !important;
+	padding: 40px;
+	background-color: #fff;
+	//border: solid 1px #09f;
+	-webkit-border-radius:10px;
+}
+
+
 div.view-panel {
-	float: left;
+	left: 0px;
+	width: 69%;
 }
 
 div.answer-panel {
-	
-	float: right;
-	label {
-		float: left;
-		margin-right: 10px;
-	}
-
+	right: 0px;
+	width: 29%;	
 	input[type="checkbox"] {
 		display: block;
 		margin: 200px auto;
 		width: 200px;
 		height: 200px;
+	}
+
+
+
+	input[type="radio"] {
+		visibility: hidden;
+	}
+
+	input[type="radio"] + label {
+		display:inline-block;
+    	background-color:#000;
+    	font-size: 20px;
+    	background-color: #eee;
+    	border-radius: 4px;
+    	width: 100%;
+    	text-align: center;
+    	padding: 50px;
+	}
+
+	input[type="radio"]:checked + label {
+    	background-color: #09f;
+    	color: white;
 	}
 
 	input[type="checkbox"]:after {
