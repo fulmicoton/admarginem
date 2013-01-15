@@ -21,12 +21,19 @@ InputView = potato.View
 # Annotate View
 AnnotateView = potato.FormFactory.FormOf(AnnotationModel)
     el: '<div class="answer-panel panel">'
+    methods:
+        up: ->
+            
+        down: ->
+            $selectedInput = @input.selectedInput()
+            $selectedInput.nextAll("input:first").click()
     events:
         "": "render": ->
             if not @keyboardIsBound?
-                jwerty.key "↩", => @val !@val()
-                jwerty.key "n", => @val false
-                jwerty.key 'y', => @val true
+                jwerty.key "↑", =>
+                    @input.selectedInput().prevAll("input:first").click()
+                jwerty.key "↓", =>
+                    @input.selectedInput().prevAll("input:first").click()
                 @keyboardIsBound = true
 
 

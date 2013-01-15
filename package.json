@@ -15,12 +15,12 @@
   ,  "url" : "https://github.com/poulejapon/chicksexer"
   }
 , "dependencies": {
-  "potato": "0.0.8"
+  "potato": "0.1.0"
 }
 , "devDependencies": {
   "coffee-script": "1.4.0"
 , "browserify": "1.17.2"
-, "potato": "0.1.0"
+, "jasmine-node": "1.0.28"
 }
 , "bin": {
     "chicksexer": "./bin/chicksexer"
