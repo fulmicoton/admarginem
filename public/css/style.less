@@ -5,7 +5,7 @@ html {
 
 body {
 	position: relative;
-	background-color: #fafafa;
+	background-color: #fdfdfd;
 	min-height: 100%;
 	font-family: sans-serif;
 }
@@ -75,16 +75,18 @@ div.panel {
 	position: absolute;
 	min-height:700px !important;
 	padding: 40px;
-	background-color: #fff;
-	//border: solid 1px #09f;
 	-webkit-border-radius:10px;
 }
-
 
 div.view-panel {
 	left: 0px;
 	width: 69%;
 }
+
+@color1: #fafa00;
+// @color2: #e72;
+@gray1: desaturate(@color1,100%);
+// @gray2: desaturate(@color2,100%);
 
 div.answer-panel {
 	right: 0px;
@@ -103,38 +105,36 @@ div.answer-panel {
 	input[type="radio"] + label {
 		display:inline-block;
     	font-size: 40px;
-    	background-color: #eee;
     	border-radius: 4px;
     	width: 100%;
     	text-align: center;
     	padding: 50px;
+    	color: #eee;
+    	text-shadow: 1px 1px 3px #999;
 	}
 
-	input[type="radio"] + label:hover {
-    	background-color: lighten(#09f, 40%);
+	input[type="radio"] + label:hover {	
+		color: white;
 	}
 
 	input[type="radio"]:checked + label {
-    	background-color: #09f;
-    	color: white;
+    	// border: solid darken(@color1,5%) 2px;
+    	color: @color1;
 	}
 
 	input[type="checkbox"]:after {
 		content:"";
-		background-color: red;
 	    display:inline-block;
 		width: 200px;
 		height: 200px;
 	    margin: 0 auto;
 	    vertical-align:middle;
-	    background:url(../img/checkbox.png) -199px top no-repeat;
 	    cursor:pointer;
 	}
 
 	input[type="checkbox"]:checked:after {
 		content:"";
 		margin: 0 auto;
-	    background:url(../img/checkbox.png) left top no-repeat;
 	}
 
 }

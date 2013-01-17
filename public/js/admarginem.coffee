@@ -12,7 +12,7 @@ InputModel = potato.Model
 
 # Input view
 InputView = potato.View
-    el: '<div class="view-panel panel">'
+    el: '<div>'
     template: " 
         <h1>URL</h1>{{ url }}
         <h1>DATA</h1>{{ data }}
@@ -20,7 +20,7 @@ InputView = potato.View
 
 # Annotate View
 AnnotateView = potato.FormFactory.FormOf(AnnotationModel)
-    el: '<div class="answer-panel panel">'
+    el: '<div>'
     methods:
         up: ->
             
@@ -33,9 +33,8 @@ AnnotateView = potato.FormFactory.FormOf(AnnotationModel)
                 jwerty.key "↑", =>
                     @input.selectedInput().prevAll("input:first").click()
                 jwerty.key "↓", =>
-                    @input.selectedInput().prevAll("input:first").click()
+                    @input.selectedInput().nextAll("input:first").click()
                 @keyboardIsBound = true
-
 
 # Slider View
 SliderView = potato.View
@@ -67,8 +66,12 @@ AdMarginemApp = potato.View
             <span class="number">{{ indexOffSet1 }} / {{ size }} </span>
             <#slider/>
         </div>
+        <div class='view-panel panel'>
         <#inputView/>
+        </div>
+        <div class='answer-panel panel'>
         <#annotateView/>
+        </div>
     """
 
     properties:

@@ -53,6 +53,13 @@ fixture: startdb
 run: startdb node_modules
 	@`npm bin`/coffee server.coffee
 
+
+# App related commands
+run-dev: startdb node_modules
+	#coffee server.coffee
+	@`npm bin`/supervisor server.coffee
+
+
 clean: deletedb deletemodules node_modules fixture
 
 tests: startdb
