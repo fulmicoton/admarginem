@@ -1,5 +1,5 @@
 {
-  "name": "chicksexer"
+  "name": "admarginem"
 , "description": "A human annotation tool."
 , "version": "0.0.1"
 , "author": "Paul Masurel <paul.masurel@gmail.com>"
@@ -7,12 +7,12 @@
 , "engines": ["node >= 0.4.0"]
 ,  "licenses":  [{
        "type":    "MIT",
-       "url":     "https://raw.github.com/poulejapon/chicksexer/master/LICENSE"
+       "url":     "https://raw.github.com/poulejapon/admarginem/master/LICENSE"
       }
    ]
 , "repository": {
     "type" : "git"
-  ,  "url" : "https://github.com/poulejapon/chicksexer"
+  ,  "url" : "https://github.com/poulejapon/admarginem"
   }
 , "dependencies": {
   "potato": "0.1.0"
@@ -27,9 +27,6 @@
 , "async": "0.1.22"
 , "readymade": "0.2.3"
 , "supervisor": "0.5.0"
-}
-, "bin": {
-    "chicksexer": "./bin/chicksexer"
 }
 , "directories": {
 	"src": "./src"

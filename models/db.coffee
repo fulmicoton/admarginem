@@ -24,3 +24,6 @@ module.exports =
     collection: (collectionName)->
         coll = new mongodb.Collection db, collectionName
         coll
+    quit: ->
+        db.close()
+

@@ -45,7 +45,7 @@ deletedb: stopdb
 
 fixture: startdb
 	@echo "Loading Fixtures"
-	@`npm bin`/coffee db/fixtures/load_fixtures.coffee
+	@`npm bin`/coffee load_fixtures.coffee
 
 
 
