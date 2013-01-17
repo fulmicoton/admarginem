@@ -6,6 +6,7 @@ MongoStore = require('connect-mongo')(express)
 config = require './config'
 db = require './models/db'
 User = require './models/user'
+Job = require './models/job'
 async = require 'async'
 readymade = require 'readymade'
 mongoStore = new MongoStore(config.db)
@@ -36,7 +37,10 @@ app.configure 'production', ->
 
 # Routes
 app.get '/', (req, res)->
-    res.render 'index', { title: ""}
+    Job.find {}, (err, jobs)->
+        console.log jobs
+        res.render 'index', {title: "",  jobs: jobs}
+
 
 runServer = (callback=(->))->
     app.listen 3000, ->

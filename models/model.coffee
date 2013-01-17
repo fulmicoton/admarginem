@@ -13,6 +13,16 @@ Model = potato.Model
 
         collectionName: -> throw "Not Implemented."
 
+        loadFixtures: (datas, cb)->
+            fixtures = []
+            for data in datas
+                do (data)=>
+                    fixtures.push (cb)=>
+                        console.log "*", data
+                        @make(data).save (err, data)->
+                            cb()
+            async.series fixtures, cb
+
         ensureIndex: (callback=(->))->
             collectionName = potato.pick @collectionName
             potato.log "Ensuring indexes for #{ collectionName }"
@@ -29,22 +39,21 @@ Model = potato.Model
             if (typeof itemId == "string")
                 itemId = ObjectID itemId
             @collection().findOne({_id: itemId}, callback)
-        
+
         findOne: (filter, callback)->
             assert.ok typeof filter == "object"
             @collection().findOne filter, callback
 
-        find: (filter, callback, limit = 10)->
+        find: (filter, callback, limit = @MAX_PER_REQUEST)->
             assert.ok typeof filter == "object"
             @collection().find(filter).limit(limit).toArray callback
     
     methods:
         save: (callback)->
             data = @toData()
-            console.log data
             if @_id?
                 data._id = @_id
-            @collection().save data, {safe: true, multi:false, upsert:true}, callback
+            @__potato__.collection().save data, {safe: true, multi:false, upsert:true}, callback
 
 Date = potato.Literal
     default: -> new Date()
