@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div#content
+  script#jobdata(type="application/json")!= data
+
+block js
+  script(src="/public/js/jwerty.min.js")
+  script(src="/public/js/admarginem.browserify.js")
+

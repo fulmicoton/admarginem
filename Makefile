@@ -44,10 +44,7 @@ deletedb: stopdb
 	@rm -fr ./db/data/*
 
 fixture: startdb
-	@echo "Loading Fixtures"
 	@`npm bin`/coffee load_fixtures.coffee
-
-
 
 # App related commands
 run: startdb node_modules

@@ -1,39 +1,50 @@
 #!/bin/env node
 
-Job = require "./models/job"
-
-
+potato = require 'potato'
 async = require 'async'
-
-###
-async.series([
-    function(callback){
-        // do some stuff ...
-        callback(null, 'one');
-    },
-    function(callback){
-        // do some more stuff ...
-        callback(null, 'two');
-    },
-],
-
-
-
-job = Job.make
-    name: "Right or wrong quizz"
-    creationDate: "2012-10-01"
-### 
+Job = require './models/job'
+Document = require "./models/document"
 
 jobFixtures = [
+        _id: "000000000000000000000001"
         name: "Relation Extraction Ford"
         creationDate: "2012-10-01"
     ,
+        _id: "000000000000000000000002"
         name: "Car Sentiment analysis"
         creationDate: "2012-10-01"
 ]
 
-Job.loadFixtures jobFixtures, ->
-    console.log "done."
-    db = require './models/db'
-    db.quit()
+docFixtures = [
+        _id: "000000000000000000000003"
+        job: "000000000000000000000001"
+        data:
+            url:"http://a"
+            data: "a"
+    ,
+        _id: "000000000000000000000004"
+        job: "000000000000000000000001"
+        data:
+            url:"http://b"
+            data: "b"
+    ,
+        _id: "000000000000000000000005"
+        job: "000000000000000000000001"
+        data:
+            url:"http://c"
+            data: "c"
+    ,
+        _id: "000000000000000000000006"
+        job: "000000000000000000000001"
+        data:
+            url:"http://d"
+            data: "d"
+]
 
+potato.log "Loading Fixtures for Job"
+Job.loadFixtures jobFixtures, ->
+    console.log "Done."
+    potato.log "Loading Fixtures for Document"
+    Document.loadFixtures docFixtures, ->
+        console.log "Done."
+        require('./models/db').quit()

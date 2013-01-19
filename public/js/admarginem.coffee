@@ -14,8 +14,8 @@ InputModel = potato.Model
 InputView = potato.View
     el: '<div>'
     template: " 
-        <h1>URL</h1>{{ url }}
-        <h1>DATA</h1>{{ data }}
+        <h2>URL</h2>{{ url }}
+        <h2>DATA</h2>{{ data }}
     "
 
 # Annotate View
@@ -62,7 +62,7 @@ AdMarginemApp = potato.View
     
     template: """
         <div class="header">
-            <h1>admarginem</h1>
+            <h1>{{ job.name }}</h1>
             <span class="number">{{ indexOffSet1 }} / {{ size }} </span>
             <#slider/>
         </div>
@@ -73,8 +73,8 @@ AdMarginemApp = potato.View
         <#annotateView/>
         </div>
     """
-
     properties:
+        jobName: potato.String
         population: potato.CollectionOf(InputModel)
         annotations: potato.CollectionOf(AnnotationModel)
         sampleId: potato.Integer
@@ -94,7 +94,10 @@ AdMarginemApp = potato.View
 
     methods:
         load: (data)->
-            @population.setData data
+            @job = data.job
+            console.log @job
+            console.log typeof @job
+            @population.setData data.documents
             for i in [0...@size()]
                 @annotations.add AnnotationModel.make()
             @sampleId = 0
@@ -144,7 +147,14 @@ AdMarginemApp = potato.View
 
 $ ->
     admarginem = AdMarginemApp.loadInto $ "#content"
+    json = $("#jobdata").text()
+    data = JSON.parse json
+    jwerty.key '←', -> admarginem.goPrevious()
+    jwerty.key '→', -> admarginem.goNext()
+    admarginem.load data
+    ###
     $.getJSON "json/population.json",   {}, (data)->
         jwerty.key '←', -> admarginem.goPrevious()
         jwerty.key '→', -> admarginem.goNext()
         admarginem.load data
+    ###

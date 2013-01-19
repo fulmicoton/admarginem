@@ -1,6 +1,27 @@
 extends layout
 
 block content
-  ul
-    - each job in jobs
-        li #{job.name}
+  h1 admarginem
+  div.job-list
+      table
+        thead
+            tr
+                th(data-sort="string") Job name
+                th #docs
+                th #annotated
+                th date
+        tbody
+            - each job in jobs
+                tr
+                    td.job-name
+                        a(href="jobs/#{job._id.toHexString()}").job-link #{job.name}
+                    td bbb
+                    td aaa
+                    td #{job.creationDate}
+
+block js
+    script(src="/public/js/stupidtable.min.js")
+    script
+        $(function() {
+           var table = $("table.job-list").stupidtable();
+        });
