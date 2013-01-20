@@ -28,6 +28,7 @@
 , "readymade": "0.2.3"
 , "supervisor": "0.5.0"
 , "async": "0.1.22"
+, "tuberous": "0.0.1"
 }
 , "directories": {
 	"src": "./src"

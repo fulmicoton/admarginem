@@ -4,12 +4,13 @@ util = require 'util'
 express = require 'express' 
 MongoStore = require('connect-mongo')(express)
 config = require './config'
-db = require './models/db'
-Job = require './models/job'
+model = require './models/model'
 async = require 'async'
 readymade = require 'readymade'
+tuberous = require 'tuberous'
+config = require './config'
 
-mongoStore = new MongoStore(config.db)
+
 app = express.createServer()
 
 
@@ -24,8 +25,8 @@ app.configure ->
         makefile: './readymade.Makefile'
     app.set 'views', __dirname + '/views'
     app.use express.favicon()
-    app.use express.cookieParser()
-    app.use express.session { secret: config.secret, store: mongoStore }
+    #app.use express.cookieParser()
+    #app.use express.session { secret: config.secret, store: mongoStore }
     app.set 'view engine', 'jade'
     app.set 'view options', layout: false
 
@@ -40,35 +41,31 @@ app.configure 'production', ->
 
 
 
-
-
 # Routes
 # -----------------------------------
 
-
-JOB_DATA = 
-    name: "Relation Extraction Ford"
-    docs: [
-        {"url":"http://a", "data": "a" },
-        {"url":"http://b", "data": "b" },
-        {"url":"http://c", "data": "c" },
-        {"url":"http://d", "data": "d" }
-    ]
-
 app.get '/jobs/:id?', (req, res)->
-    Job.find {}, (err, jobs)->
-        jobId = req.params.id
-        Job.findById jobId, (err,job)->
-            job.documents (err,documents)->
-                documents = ( doc.data for doc in documents )
-                res.render 'job', 
-                    title: job.name
-                    data: JSON.stringify
-                        job: job.toData()
-                        documents: documents
+    jobId = req.params.id
+    model.Job.findById jobId, (err,job)->
+        res.render 'job', 
+            title: job.name
+            job: job.toJSON()
+
+app.get '/api/jobs/:id?', (req, res)->
+    jobId = req.params.id
+    model.Job.findById jobId, (err,job)->
+        res.json
+            name: job.name
+            creationDate: job.creationDate
+            type: job.type
+
+app.get '/api/jobs/:id?/documents', (req, res)->
+    job = model.Job.findById req.params.id, (error, job)->
+        job.documents (err,documents)->
+            res.json ( doc.data for doc in documents )
 
 app.get '/', (req, res)->
-    Job.find {}, (err, jobs)->
+    model.Job.find {}, (err, jobs)->
         res.render 'index', {title: "",  jobs: jobs}
 
 runServer = (callback=(->))->
@@ -78,7 +75,9 @@ runServer = (callback=(->))->
         console.log "Express server listening on port #{port} in #{mode} mode"
     callback()
 
+tuberous.configure config.db
+
 # ( (args...)-> User.ensureIndex args...)
-async.series [db.setup, runServer]
+runServer()
 
 module.exports = app

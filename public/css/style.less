@@ -57,6 +57,7 @@ div.job-list {
 	margin: 0px -50px;
 
 	table {
+		border: 0;
 		th {
 			-webkit-user-select: none;
 			-khtml-user-select: none;
@@ -80,11 +81,18 @@ div.job-list {
 			}
 		}
 		
-		
+		tbody {
 
-		td.job-name {
-			width: 400px;
-			padding: 0px 4px ;
+			tr:hover {
+				background-color: white;
+			}
+		
+			td.job-name {
+				width: 400px;
+				padding: 4px 4px ;
+				border-width: 0px;
+			}
+
 		}
 	}
 }

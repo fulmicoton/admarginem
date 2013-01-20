@@ -1,9 +1,10 @@
 potato = require "potato"
+model = require "../models/model"
 
 # Models
 AnnotationModel =  potato.Enum 
-    default: "correct"
-    choices: [ {id: "correct", name: "correct"}, {id: "wrong", name: "wrong"}  ]
+    default: "undefined"
+    choices: [ {id: "undefined", name: "undefined"}, {id: "correct", name: "correct"}, {id: "wrong", name: "wrong"}  ]
 
 InputModel = potato.Model
     components:
@@ -91,18 +92,21 @@ AdMarginemApp = potato.View
                 context: (parent)->
                     parent.currentAnnotation()
 
-
     methods:
-        load: (data)->
-            @job = data.job
-            console.log @job
-            console.log typeof @job
-            @population.setData data.documents
-            for i in [0...@size()]
-                @annotations.add AnnotationModel.make()
-            @sampleId = 0
-            @slider.setRange 1, @size()
-            @render()  
+        load: (job, cb=(->))->
+            @job = job
+            jobUrl = job.url() + "/documents"
+            $.ajax
+              dataType: "json"
+              url: jobUrl
+              success: (docs)=>
+                @population.setData docs
+                for i in [0...@size()]
+                    @annotations.add AnnotationModel.make()
+                @sampleId = 0
+                @slider.setRange 1, @size()
+                @render()  
+              error: (error,status)-> cb("error :" + status)
 
         saveCurrent: ->
             if @hasUnsavedChanges
@@ -148,13 +152,7 @@ AdMarginemApp = potato.View
 $ ->
     admarginem = AdMarginemApp.loadInto $ "#content"
     json = $("#jobdata").text()
-    data = JSON.parse json
+    job = model.Job.fromJSON json
     jwerty.key '←', -> admarginem.goPrevious()
     jwerty.key '→', -> admarginem.goNext()
-    admarginem.load data
-    ###
-    $.getJSON "json/population.json",   {}, (data)->
-        jwerty.key '←', -> admarginem.goPrevious()
-        jwerty.key '→', -> admarginem.goNext()
-        admarginem.load data
-    ###
+    admarginem.load job
